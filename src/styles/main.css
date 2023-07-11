@@ -1,0 +1,27 @@
+/* for layout */
+
+@font-face {
+  font-family: "HandWritten";
+  src: url("./marutya.ttf"); /* url("./slimamif.ttf"); */
+}
+
+@font-face {
+  font-family: "ClassicFont";
+  src: url("./Raleway-Regular.ttf"); /* url("./slimamif.ttf"); */
+}
+
+body {
+  /* background-image: url("./bckgr.png"); */
+  /* background-color: aqua; */
+  background-size: 600px;
+  background-color: #eee;
+}
+
+/* .background-img {
+  opacity: 0.6;
+  background-image: url("../styles/bckgr.png");
+  
+  background-size: 600px;
+  width: 700px;
+  height: 700px;
+} */
