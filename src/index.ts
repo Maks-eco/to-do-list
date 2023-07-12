@@ -69,3 +69,19 @@ formElem.addEventListener("submit", (e) => {
     .getElementsByClassName("task-list")[0]
     .appendChild(listComponent(result));
 });
+
+const backgr = document.getElementsByClassName("popup-back")[0] as HTMLElement;
+const closeButton = document.getElementById("close-button");
+const popup = document.getElementsByClassName("popup")[0];
+
+backgr.addEventListener("click", function (event) {
+  this.hidden = true;
+});
+
+closeButton.addEventListener("click", function (event) {
+  backgr.hidden = true;
+});
+
+popup.addEventListener("click", function (event) {
+  event.stopPropagation();
+});
