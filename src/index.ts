@@ -71,6 +71,7 @@ formElem.addEventListener("submit", (e) => {
 });
 
 const backgr = document.getElementsByClassName("popup-back")[0] as HTMLElement;
+backgr.hidden = true;
 const closeButton = document.getElementById("close-button");
 const popup = document.getElementsByClassName("popup")[0];
 
@@ -80,8 +81,16 @@ backgr.addEventListener("click", function (event) {
 
 closeButton.addEventListener("click", function (event) {
   backgr.hidden = true;
+  event.stopPropagation();
 });
 
 popup.addEventListener("click", function (event) {
   event.stopPropagation();
 });
+
+// open-popup
+document
+  .getElementsByClassName("open-popup")[0]
+  .addEventListener("click", function (event) {
+    backgr.hidden = false;
+  });
