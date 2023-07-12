@@ -29,14 +29,43 @@ const containerActivation = (state: boolean) => {
   return "container container-" + (state ? "enactive" : "active");
 };
 
-const list = document.getElementsByClassName("container");
-for (let item = 0; item < list.length; item++) {
-  let element = list[item] as HTMLElement;
+const addToggleViewEvent = (element: HTMLElement) => {
   const input: HTMLInputElement = element.getElementsByTagName("input")[0];
-  // console.log(input.checked);
   input.addEventListener("click", function () {
-    // console.log(this);
     element.className = containerActivation(input.checked);
   });
   element.className = containerActivation(input.checked);
+};
+
+const list = document.getElementsByClassName("container");
+for (let item = 0; item < list.length; item++) {
+  let element = list[item] as HTMLElement;
+  addToggleViewEvent(element);
 }
+
+const listComponent = (value: string) => {
+  const container = document.createElement("div");
+  const label = document.createElement("label");
+  container.className = "task";
+  label.className = "container container-active";
+  label.innerHTML = `${value}<input type="checkbox" />
+  <span class="checkmark"></span>`;
+  addToggleViewEvent(label);
+  container.appendChild(label);
+  return container;
+};
+
+const formElem: HTMLFormElement = document.querySelector("form");
+
+formElem.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(formElem);
+  let data = formData.get("field").toString();
+  var regex = /(<([^>]+)>)/gi;
+  var result = data.replace(regex, "");
+  // console.log(result);
+  if (result == "") return;
+  document
+    .getElementsByClassName("task-list")[0]
+    .appendChild(listComponent(result));
+});

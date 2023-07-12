@@ -3,12 +3,12 @@
 
 @font-face {
   font-family: "HandWritten";
-  src: url("./marutya.ttf"); /* url("./slimamif.ttf"); */
+  src: url("./fonts/marutya.ttf"); /* url("./slimamif.ttf"); */
 }
 
 @font-face {
   font-family: "ClassicFont";
-  src: url("./Raleway-Regular.ttf"); /* url("./slimamif.ttf"); */
+  src: url("./fonts/Raleway-Regular.ttf"); /* url("./slimamif.ttf"); */
 }
 
 body {
