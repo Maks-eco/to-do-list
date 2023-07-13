@@ -57,16 +57,16 @@ $orange-backgr: linear-gradient(
   background: $orange-backgr;
 }
 
-$main-color-enactive: #ccc;
-.container-enactive {
-  // $main-color-enactive: #ddd;
+$main-color-inactive: #ccc;
+.container-inactive {
+  // $main-color-inactive: #ddd;
   background: repeating-linear-gradient(
     -45deg,
     transparent 0 9px,
-    $main-color-enactive 9px 12px
+    $main-color-inactive 9px 12px
   );
-  border: 1px solid $main-color-enactive;
-  color: $main-color-enactive;
+  border: 1px solid $main-color-inactive;
+  color: $main-color-inactive;
 }
 
 /* Hide the browser's default checkbox */
@@ -89,24 +89,24 @@ $main-color-enactive: #ccc;
   border: 2px solid;
   border-radius: 10px;
   border-color: #ffffff00;
-  // border-color: $main-color-enactive;
+  // border-color: $main-color-inactive;
 }
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
   background-color: #fff;
-  // border-color: $main-color-enactive;
+  // border-color: $main-color-inactive;
 }
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
   background-color: #ffffff00;
-  // border-color: $main-color-enactive;
+  // border-color: $main-color-inactive;
 }
 
 .container:hover input:checked ~ .checkmark {
   background-color: #ffffff00;
-  border-color: $main-color-enactive;
+  border-color: $main-color-inactive;
 }
 
 /* Style the checkmark/indicator */
@@ -124,5 +124,5 @@ $main-color-enactive: #ccc;
 
 .container input:checked ~ .checkmark:after {
   // background-color: #ffffff00;
-  border-color: $main-color-enactive;
+  border-color: $main-color-inactive;
 }

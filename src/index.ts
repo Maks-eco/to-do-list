@@ -2,55 +2,110 @@ import * as _ from "lodash";
 import "./styles/main.css";
 import "./styles/text.less";
 import "./styles/inputs.scss";
+import { electron } from "webpack";
 
-function component() {
-  const element = document.createElement("div");
-
-  element.innerHTML = _.join(
-    [
-      "Тестовый текст на русском для осмотра шрифта",
-      "Hello man",
-      "yo wewewewebpack",
-      "with",
-      "TS",
-    ],
-    " "
-  );
-
-  return element;
+interface Task {
+  id: string;
+  value: string;
+  active: boolean;
 }
 
-const message: string | number = 3; //"Ts rulz";
-console.log(message.toString());
+class Storage {
+  // constructor() {}
+  save(value: object) {
+    localStorage.setItem("stor", JSON.stringify(value));
+  }
+  get() {
+    return JSON.parse(localStorage.getItem("stor"));
+  }
+}
 
-// document.getElementsByClassName("container")[0].appendChild(component());
+class TaskStorage extends Storage {
+  getTaskList() {
+    let data = this.get();
+    if (data?.list) {
+      return data?.list;
+    } else {
+      data = { list: [] };
+      this.save(data);
+      return [];
+    }
+  }
+  addTaskToList(value: string) {
+    let data = this.get();
+    if (data?.list) {
+    } else {
+      data = { list: [] };
+    }
+    data.list.push({
+      id: Date.now().toString(),
+      value,
+      active: true,
+    });
+    this.save(data);
+  }
+  deleteInactiveTaskFromList() {
+    let data = this.get();
+    if (data?.list) {
+      data.list = data.list.filter((item: any) => item.active);
+    } else {
+      data = { list: [] };
+      // data.list.push(value);
+    }
+    this.save(data);
+  }
+  toggleTask(id: string) {
+    let list: Task[] = this.get()?.list;
+    if (list) {
+      list.map((task) => {
+        if (task.id === id) {
+          task.active = !task.active;
+        }
+        return task;
+      });
+      const data = this.get();
+      data.list = list;
+      this.save(data);
+    }
+  }
+}
 
-const containerActivation = (state: boolean) => {
-  return "container container-" + (state ? "enactive" : "active");
-};
+const storage = new TaskStorage();
+// console.log(storage.get());
 
-const addToggleViewEvent = (element: HTMLElement) => {
-  const input: HTMLInputElement = element.getElementsByTagName("input")[0];
-  input.addEventListener("click", function () {
-    element.className = containerActivation(input.checked);
+const addCheckboxListener = (checkbox: Element) => {
+  checkbox.addEventListener("change", function () {
+    console.log("tooggled");
+    storage.toggleTask(this.parentElement.parentElement.id.toString());
+    this.parentElement.className =
+      "container container-" + (this.checked ? "inactive" : "active");
   });
-  element.className = containerActivation(input.checked);
 };
 
-const list = document.getElementsByClassName("container");
-for (let item = 0; item < list.length; item++) {
-  let element = list[item] as HTMLElement;
-  addToggleViewEvent(element);
-}
+// const containerActivation = (state: boolean) => {
+//   return "container container-" + (state ? "inactive" : "active");
+// };
 
-const listComponent = (value: string) => {
+const listComponent = (
+  value: string,
+  active: boolean = true,
+  id: string = Date.now().toString()
+) => {
+  console.log(value, active);
   const container = document.createElement("div");
   const label = document.createElement("label");
   container.className = "task";
-  label.className = "container container-active";
-  label.innerHTML = `${value}<input type="checkbox" />
-  <span class="checkmark"></span>`;
-  addToggleViewEvent(label);
+  container.id = id;
+  label.className = "container container-" + (active ? "active" : "inactive");
+  label.innerHTML = `${value}
+  <span class="checkmark"></span>`; //<input name="task" type="checkbox" />
+
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.name = "task";
+  addCheckboxListener(input);
+  label.appendChild(input);
+
   container.appendChild(label);
   return container;
 };
@@ -68,7 +123,20 @@ formElem.addEventListener("submit", (e) => {
   document
     .getElementsByClassName("task-list")[0]
     .appendChild(listComponent(result));
+  storage.addTaskToList(result);
 });
+
+const initList = () => {
+  const list: Task[] = storage.getTaskList();
+  const container = document.getElementsByClassName("task-list")[0];
+
+  for (const task of list) {
+    const component = listComponent(task.value, task.active, task.id);
+    // component.id = task.id;
+    container.appendChild(component);
+  }
+};
+initList();
 
 const backgr = document.getElementsByClassName("popup-back")[0] as HTMLElement;
 backgr.hidden = true;
@@ -94,3 +162,15 @@ document
   .addEventListener("click", function (event) {
     backgr.hidden = false;
   });
+
+document
+  .getElementsByClassName("clear-list")[0]
+  .addEventListener("click", function (event) {
+    storage.deleteInactiveTaskFromList();
+  });
+
+// const checkboxes = document.querySelectorAll("input[name=task]");
+
+// checkboxes.forEach((checkbox) => {
+//   addCheckboxListener(checkbox);
+// });
