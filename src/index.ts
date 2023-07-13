@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import "./styles/main.css";
-import "./styles/text.less";
+// import "./styles/text.less";
 import "./styles/inputs.scss";
 import { TaskStorage } from "./store";
 import { Task } from "./interfaces";

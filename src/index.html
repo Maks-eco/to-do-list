@@ -11,19 +11,25 @@
       <!-- <button class="button-choice">
         Ещё тестовый текст на русском для осмотра шрифта
       </button> -->
-      <button class="open-popup">Добавить задачу</button>
-      <button class="clear-list">Очистить список</button>
     </div>
+    <button class="open-popup button-add">
+      <span class="sign">+</span>
+      <span class="descr">добавить задачу</span>
+    </button>
     <div class="task-list"></div>
     <div class="popup-back">
       <div class="popup">
         <form id="newTask">
-          <input name="field" type="text" />
-          <input type="submit" />
+          <input class="form-textinput" name="field" type="text" />
+          <input class="form-submit" type="submit" />
         </form>
-        <button id="close-button">Закрыть</button>
+        <button class="form-closebutton" id="close-button">Закрыть</button>
       </div>
     </div>
+    <button class="clear-list button-dec">
+      <span class="sign">-</span>
+      <span class="descr">очистить выполненное</span>
+    </button>
     <template id="tmpl">
       <label class="container container-active">
         <input type="checkbox" name="task" />
