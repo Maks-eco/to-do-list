@@ -22,6 +22,7 @@ formElem.addEventListener("submit", (e) => {
   const { component, info } = oneTaskComponent(result);
   document.getElementsByClassName("task-list")[0].appendChild(component);
   storage.addTaskToList(info);
+  clearTaskInput();
 });
 
 const initList = () => {
@@ -36,10 +37,18 @@ const initList = () => {
 };
 initList();
 
-const backgr = document.getElementsByClassName("popup-back")[0] as HTMLElement;
+const backgr = <HTMLElement>document.getElementsByClassName("popup-back")[0];
 backgr.hidden = true;
 const closeButton = document.getElementById("close-button");
 const popup = document.getElementsByClassName("popup")[0];
+const inputTaskText = <HTMLInputElement>(
+  document.getElementsByClassName("form-textinput")[0]
+);
+
+const clearTaskInput = () => {
+  inputTaskText.value = "";
+  inputTaskText.select();
+};
 
 backgr.addEventListener("click", function (event) {
   this.hidden = true;
@@ -59,6 +68,7 @@ document
   .getElementsByClassName("open-popup")[0]
   .addEventListener("click", function (event) {
     backgr.hidden = false;
+    clearTaskInput();
   });
 
 document
