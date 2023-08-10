@@ -1,16 +1,7 @@
-import { FC, Fragment } from "react";
-import { TaskStorage } from "./store";
-import { Task } from "./interfaces";
-const storage = new TaskStorage();
-
-// const addCheckboxListener = (checkbox: Element) => {
-//   checkbox.addEventListener("change", function (e) {
-//     storage.toggleTask(this.parentElement.parentElement.id.toString());
-//     this.parentElement.className =
-//       "container container-" + (!this.checked ? "active" : "inactive");
-//     // e.stopPropagation();
-//   });
-// };
+import { FC, Fragment, useState } from "react";
+import { ListStorage } from "shared/store";
+import { Task } from "app/interfaces/Task";
+const storage = new ListStorage<Task>();
 
 // export const oneTaskComponent = (
 //   value: string,
@@ -18,35 +9,36 @@ const storage = new TaskStorage();
 //   id: string = Date.now().toString()
 // ) => {
 //   const container = document.createElement("div");
-//   container.className = "task";
-
-//   const tmpl = <HTMLTemplateElement>document.getElementById("tmpl");
-//   container.appendChild(tmpl.content.cloneNode(true));
-
-//   container.id = id;
-//   const label = container.querySelector("label");
-//   label.className = "container container-" + (active ? "active" : "inactive");
-//   label.innerHTML += value;
-
-//   const input = label.querySelector("input");
-//   input.checked = !active;
-//   addCheckboxListener(input);
-
-//   return { component: container, info: { id, value, active } };
+//..........
 // };
 
 function oneTaskComponent(props: { info: Task }) {
-  console.log(props.info.id);
+  const [labelClass, setLabelClass] = useState(
+    "container container-" + (props.info.active ? "active" : "inactive")
+  );
+
+  // console.log(props.info.id);
+  function toggleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    console.log(e.target.checked); //= e.target.value
+    setLabelClass(
+      "container container-" + (!e.target.checked ? "active" : "inactive")
+    );
+  }
+
   return (
-    <Fragment>
-      {/* <div className="task" key={props.info.id}> */}
-      <label className="container container-active">
-        <input type="checkbox" name="task" />
+    <>
+      <label className={labelClass}>
+        <input
+          type="checkbox"
+          name="task"
+          defaultChecked={!props.info.active}
+          onChange={toggleChange}
+        />
         <span className="checkmark"></span>
         {props.info.value}
       </label>
       {/* </div> */}
-    </Fragment>
+    </>
   );
 }
 
