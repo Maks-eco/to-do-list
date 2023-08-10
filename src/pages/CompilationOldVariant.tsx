@@ -1,12 +1,13 @@
 // import { Fragment } from "react";
+import { useState } from "react";
+// import { update } from "lodash";
 import { ListStorage } from "shared/store";
 import OneTaskComponent from "entities/TaskRow";
 import { Task } from "app/interfaces/Task";
 // import Popup from "../entities/PopupAddMenu";
 // import AddButton from "../entities/AddToListButton";
 import ShowPopup from "features/ShowPopup";
-import { useState } from "react";
-import { update } from "lodash";
+import RemoveButton from "entities/RemoveFromListButton";
 
 const storage = new ListStorage<Task>();
 
@@ -34,10 +35,7 @@ function CompilationOldVariant() {
           </div>
         ))}
       </div>
-      <button className="clear-list button-dec">
-        <span className="sign">-</span>
-        <span className="descr">очистить выполненное</span>
-      </button>
+      <RemoveButton onPress={updateState} />
     </>
   );
 }

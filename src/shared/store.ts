@@ -51,7 +51,7 @@ export class ListStorage<T> extends Storage {
   //   let list: T[] = this.get()?.list;
   //   if (list) {
   //     list.map((task) => {
-  //       if(task?.id && task?.active)
+  //       // if(task?.id && task?.active)
   //       if (task.id === id) {
   //         task.active = !task.active;
   //       }
