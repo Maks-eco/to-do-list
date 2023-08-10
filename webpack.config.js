@@ -52,6 +52,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    preferAbsolute: true,
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
+    alias: {},
   },
   output: {
     filename: "[name].[contenthash].js",
