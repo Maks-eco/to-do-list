@@ -2,11 +2,16 @@ import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
 import { useState } from "react";
 import cls from "./Popup.module.scss";
+// import { useDispatch, useSelector } from "react-redux";
+// import { NumberGoodThings } from "app/interfaces/StoreTest";
 
 const storage = new ListStorage<Task>();
 
 const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
   const [fieldVal, setFieldVal] = useState("");
+
+  // const dispatch = useDispatch();
+  // const count = useSelector((state: NumberGoodThings) => state.ass);
 
   function addNewTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,6 +24,7 @@ const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
     storage.addToList(info);
 
     props.updateList();
+    // dispatch({ type: "ADD_ONE" });
   }
 
   function handleFieldChange(e: React.ChangeEvent<HTMLInputElement>) {

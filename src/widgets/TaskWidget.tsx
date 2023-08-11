@@ -5,6 +5,9 @@ import { Task } from "app/interfaces/Task";
 import ShowPopup from "features/ShowPopup";
 import RemoveButton from "entities/RemoveFromListButton";
 import classes from "./TaskWidget.module.scss";
+// import { useDispatch, useSelector } from "react-redux";
+// import { NumberGoodThings } from "app/interfaces/StoreTest";
+
 const storage = new ListStorage<Task>();
 
 function TaskWidget() {
@@ -12,6 +15,10 @@ function TaskWidget() {
   function updateState() {
     setTasksList(storage.getList() as Task[]);
   }
+
+  // const dispatch = useDispatch();
+  // const count = useSelector((state: NumberGoodThings) => state.ass);
+  // console.log(count);
 
   return (
     <>
