@@ -1,0 +1,13 @@
+@import "variables.scss";
+
+* {
+  @font-face {
+    font-family: "HandWritten";
+    src: url("./fonts/marutya.ttf"); /* url("./slimamif.ttf"); */
+  }
+
+  @font-face {
+    font-family: "ClassicFont";
+    src: url("./fonts/Raleway-Regular.ttf"); /* url("./slimamif.ttf"); */
+  }
+}

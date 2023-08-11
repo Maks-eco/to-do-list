@@ -1,0 +1,9 @@
+// button-add
+// sign
+// descr
+
+.button-add {
+  @include button-description;
+  border-color: $main-orange;
+  color: $main-orange;
+}

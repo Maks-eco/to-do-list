@@ -3,7 +3,7 @@ import { Task } from "app/interfaces/Task";
 import { useState } from "react";
 const storage = new ListStorage<Task>();
 
-const Popup = (props: { onPress: () => void; updateList: () => void }) => {
+const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
   const [fieldVal, setFieldVal] = useState("");
 
   function addNewTask(e: React.FormEvent<HTMLFormElement>) {

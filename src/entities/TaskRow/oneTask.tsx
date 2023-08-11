@@ -2,6 +2,7 @@ import { FC, Fragment, useState } from "react";
 import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
 // const storage = new ListStorage<Task>();
+import classes from "./styles/OneTask.module.scss";
 
 class ListStorageToggle extends ListStorage<Task> {
   toggleTask(id: string) {
@@ -23,25 +24,26 @@ class ListStorageToggle extends ListStorage<Task> {
 
 const storage = new ListStorageToggle();
 
-// export const oneTaskComponent = (
-//   value: string,
-//   active: boolean = true,
-//   id: string = Date.now().toString()
-// ) => {
-//   const container = document.createElement("div");
-//..........
-// };
-
 function oneTaskComponent(props: { info: Task }) {
   const [labelClass, setLabelClass] = useState(
-    "container container-" + (props.info.active ? "active" : "inactive")
+    `${classes.container} ${
+      props.info.active
+        ? classes["container-active"]
+        : classes["container-inactive"]
+    }`
+    //"container container-" + (props.info.active ? "active" : "inactive")
   );
 
   // console.log(props.info.id);
   function toggleChange(e: React.ChangeEvent<HTMLInputElement>, id: string) {
-    console.log(e.target.checked); //= e.target.value
+    //console.log(e.target.checked); //= e.target.value
     setLabelClass(
-      "container container-" + (!e.target.checked ? "active" : "inactive")
+      `${classes.container} ${
+        !e.target.checked
+          ? classes["container-active"]
+          : classes["container-inactive"]
+      }`
+      //"container container-" + (!e.target.checked ? "active" : "inactive")
     );
     storage.toggleTask(id);
   }
@@ -55,10 +57,9 @@ function oneTaskComponent(props: { info: Task }) {
           defaultChecked={!props.info.active}
           onChange={(e) => toggleChange(e, props.info.id)}
         />
-        <span className="checkmark"></span>
+        <span className={classes.checkmark}></span>
         {props.info.value}
       </label>
-      {/* </div> */}
     </>
   );
 }

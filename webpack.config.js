@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // module.exports = {
 //   entry: "./src/index.js",
 //   output: {
@@ -8,6 +9,23 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 //     path: path.resolve(__dirname, "dist"),
 //   },
 // };
+
+const styleBuilds = (...topLoader) => {
+  const obj = [
+    MiniCssExtractPlugin.loader,
+    {
+      loader: "css-loader",
+      options: {
+        modules: {
+          localIdentName: /* [path][name]__ */ "[local]--[hash:base64:5]",
+        },
+      },
+    },
+    // "css-loader",
+    ...topLoader,
+  ];
+  return obj;
+};
 
 module.exports = {
   mode: "development",
@@ -24,15 +42,47 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: styleBuilds(null), //[
+        //   MiniCssExtractPlugin.loader,
+        //   //"style-loader",
+        //   "css-loader",
+        // ],
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: styleBuilds("less-loader"), //[
+        //   MiniCssExtractPlugin.loader,
+        //   //"style-loader",
+        //   // "css-loader",
+        //   {
+        //     loader: "css-loader",
+        //     options: {
+        //       modules: true,
+        //     },
+        //   },
+        //   "less-loader",
+        // ],
       },
       {
         test: /\.s[ac]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: styleBuilds("sass-loader", {
+          loader: "sass-resources-loader",
+          options: {
+            // Provide path to the file with resources
+            resources: "src/app/variables.scss",
+            // // Or array of paths
+            // resources: [
+            //   './path/to/vars.scss',
+            //   './path/to/mixins.scss',
+            //   './path/to/functions.scss'
+            // ]
+          },
+        }), // [
+        // MiniCssExtractPlugin.loader,
+        // //"style-loader",
+        // "css-loader",
+        // "sass-loader",
+        // ],
       },
       {
         test: /\.(jpg|jpe?g|png)$/,
@@ -68,5 +118,8 @@ module.exports = {
       template: "./src/index.html",
     }),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash:8].css",
+    }),
   ],
 };

@@ -1,0 +1,43 @@
+$main-orange: rgba(244, 117, 33, 1);
+$main-color-inactive: #ccc;
+$orange-backgr: linear-gradient(
+  90deg,
+  $main-orange 0%,
+  $main-orange 51%,
+  rgba(246, 153, 27, 1) 100%
+);
+/*  */
+
+@mixin button-description {
+  height: 40px;
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px;
+  border: 1px solid;
+  // border-color: $main-orange;
+  // color: $main-orange;
+  background: #fff;
+  font-family: "ClassicFont", sans-serif;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  .sign {
+    position: relative;
+    font-size: 60px;
+    line-height: 40%;
+  }
+  .descr {
+    display: none;
+    position: relative;
+    top: -12px;
+    padding-left: 10px;
+    font-size: 22px;
+  }
+
+  &:hover {
+    .descr {
+      display: inline;
+    }
+  }
+}
