@@ -1,7 +1,7 @@
 import MainPage from "pages/MainPage";
-import "./main.module.scss";
+import cls from "./main.module.scss";
 const App = () => (
-  <div className="app">
+  <div className={cls.app}>
     <MainPage />
   </div>
 );

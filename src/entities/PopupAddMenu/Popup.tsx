@@ -1,6 +1,8 @@
 import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
 import { useState } from "react";
+import cls from "./Popup.module.scss";
+
 const storage = new ListStorage<Task>();
 
 const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
@@ -28,21 +30,25 @@ const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
   }
 
   return (
-    <div className="popup-back" onClick={props.onPress}>
-      <div className="popup" onClick={dblBackgrondWasClicked}>
-        <form id="newTask" onSubmit={addNewTask}>
+    <div className={cls["popup-back"]} onClick={props.onPress}>
+      <div className={cls.popup} onClick={dblBackgrondWasClicked}>
+        <form className={cls["new-task"]} onSubmit={addNewTask}>
           <input
-            className="form-textinput"
+            className={cls["form-textinput"]}
             name="field"
             type="text"
             onChange={handleFieldChange}
           />
-          <input className="form-submit" type="submit" value="Добавить" />
+          <input
+            className={cls["form-submit"]}
+            type="submit"
+            value="Добавить"
+          />
         </form>
         <button
           onClick={props.onPress}
-          className="form-closebutton"
-          id="close-button"
+          className={cls["form-closebutton"]}
+          // id="close-button"
         >
           Закрыть
         </button>

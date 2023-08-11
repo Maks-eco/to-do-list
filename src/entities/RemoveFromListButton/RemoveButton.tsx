@@ -1,5 +1,6 @@
 import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
+import cls from "./RemoveButton.module.scss";
 // import { useState } from "react";
 const storage = new ListStorage<Task>();
 
@@ -10,9 +11,9 @@ const RemoveButton = (props: { onPress: () => void }) => {
   }
 
   return (
-    <button className="clear-list button-dec" onClick={clearDoneTasks}>
-      <span className="sign">-</span>
-      <span className="descr">очистить выполненное</span>
+    <button className={cls["button-dec"]} onClick={clearDoneTasks}>
+      <span className={cls.sign}>-</span>
+      <span className={cls.descr}>очистить выполненное</span>
     </button>
   );
 };

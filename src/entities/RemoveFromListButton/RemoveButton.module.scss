@@ -1,0 +1,13 @@
+// button-add
+// sign
+// descr
+
+.button-dec {
+  @include button-description;
+  border-color: $main-color-inactive;
+  color: $main-color-inactive;
+  .sign {
+    position: relative;
+    top: -5px;
+  }
+}
