@@ -1,28 +1,7 @@
-import { FC, Fragment, useState } from "react";
-import { ListStorage } from "shared/store";
+import { useState } from "react";
 import { Task } from "app/interfaces/Task";
-// const storage = new ListStorage<Task>();
 import classes from "./styles/OneTask.module.scss";
-
-class ListStorageToggle extends ListStorage<Task> {
-  toggleTask(id: string) {
-    let list: Task[] = this.get()?.list;
-    if (list) {
-      list.map((task) => {
-        // if(task?.id && task?.active)
-        if (task.id === id) {
-          task.active = !task.active;
-        }
-        return task;
-      });
-      const data = this.get();
-      data.list = list;
-      this.save(data);
-    }
-  }
-}
-
-const storage = new ListStorageToggle();
+import { useDispatch } from "react-redux";
 
 function oneTaskComponent(props: { info: Task }) {
   const [labelClass, setLabelClass] = useState(
@@ -31,21 +10,19 @@ function oneTaskComponent(props: { info: Task }) {
         ? classes["container-active"]
         : classes["container-inactive"]
     }`
-    //"container container-" + (props.info.active ? "active" : "inactive")
   );
 
-  // console.log(props.info.id);
+  const dispatch = useDispatch();
+
   function toggleChange(e: React.ChangeEvent<HTMLInputElement>, id: string) {
-    //console.log(e.target.checked); //= e.target.value
     setLabelClass(
       `${classes.container} ${
         !e.target.checked
           ? classes["container-active"]
           : classes["container-inactive"]
       }`
-      //"container container-" + (!e.target.checked ? "active" : "inactive")
     );
-    storage.toggleTask(id);
+    dispatch({ type: "TOGGLE_TASK", payload: { id } });
   }
 
   return (

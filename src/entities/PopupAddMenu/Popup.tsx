@@ -2,16 +2,14 @@ import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
 import { useState } from "react";
 import cls from "./Popup.module.scss";
-// import { useDispatch, useSelector } from "react-redux";
-// import { NumberGoodThings } from "app/interfaces/StoreTest";
+import { useDispatch } from "react-redux";
 
 const storage = new ListStorage<Task>();
 
-const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
+const Popup = (props: { onClose?: () => void; updateList?: () => void }) => {
   const [fieldVal, setFieldVal] = useState("");
 
-  // const dispatch = useDispatch();
-  // const count = useSelector((state: NumberGoodThings) => state.ass);
+  const dispatch = useDispatch();
 
   function addNewTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,10 +19,8 @@ const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
     // console.log(result);
     if (result == "") return;
     const info: Task = { id: Date.now().toString(), value: data, active: true };
-    storage.addToList(info);
 
-    props.updateList();
-    // dispatch({ type: "ADD_ONE" });
+    dispatch({ type: "ADD_TASK", payload: info });
   }
 
   function handleFieldChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -36,7 +32,7 @@ const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
   }
 
   return (
-    <div className={cls["popup-back"]} onClick={props.onPress}>
+    <div className={cls["popup-back"]} onClick={props.onClose}>
       <div className={cls.popup} onClick={dblBackgrondWasClicked}>
         <form className={cls["new-task"]} onSubmit={addNewTask}>
           <input
@@ -51,11 +47,7 @@ const Popup = (props: { onPress?: () => void; updateList?: () => void }) => {
             value="Добавить"
           />
         </form>
-        <button
-          onClick={props.onPress}
-          className={cls["form-closebutton"]}
-          // id="close-button"
-        >
+        <button onClick={props.onClose} className={cls["form-closebutton"]}>
           Закрыть
         </button>
       </div>

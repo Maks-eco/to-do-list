@@ -2,13 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// module.exports = {
-//   entry: "./src/index.js",
-//   output: {
-//     filename: "main.js",
-//     path: path.resolve(__dirname, "dist"),
-//   },
-// };
 
 const styleBuilds = (...topLoader) => {
   const obj = [
@@ -21,7 +14,6 @@ const styleBuilds = (...topLoader) => {
         },
       },
     },
-    // "css-loader",
     ...topLoader,
   ];
   return obj;
@@ -42,60 +34,27 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: styleBuilds(null), //[
-        //   MiniCssExtractPlugin.loader,
-        //   //"style-loader",
-        //   "css-loader",
-        // ],
+        use: styleBuilds(null),
       },
       {
         test: /\.less$/,
-        use: styleBuilds("less-loader"), //[
-        //   MiniCssExtractPlugin.loader,
-        //   //"style-loader",
-        //   // "css-loader",
-        //   {
-        //     loader: "css-loader",
-        //     options: {
-        //       modules: true,
-        //     },
-        //   },
-        //   "less-loader",
-        // ],
+        use: styleBuilds("less-loader"),
       },
       {
         test: /\.s[ac]ss$/,
         use: styleBuilds("sass-loader", {
           loader: "sass-resources-loader",
           options: {
-            // Provide path to the file with resources
             resources: "src/app/variables.scss",
-            // // Or array of paths
-            // resources: [
-            //   './path/to/vars.scss',
-            //   './path/to/mixins.scss',
-            //   './path/to/functions.scss'
-            // ]
           },
-        }), // [
-        // MiniCssExtractPlugin.loader,
-        // //"style-loader",
-        // "css-loader",
-        // "sass-loader",
-        // ],
+        }),
       },
       {
         test: /\.(jpg|jpe?g|png)$/,
-        // loader: "file-loader",
-        // options: {
-        //   name: "[path][name].[ext]",
-        //   type: "asset/resource",
-        // },
         type: "asset/resource",
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        // use: ["file-loader"],
         type: "asset/resource",
       },
     ],

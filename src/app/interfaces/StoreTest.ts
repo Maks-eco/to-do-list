@@ -1,3 +1,5 @@
-export interface NumberGoodThings {
-    ass: number;
+import { Task } from "./Task";
+
+export interface TaskList {
+    list: Task[];
 }

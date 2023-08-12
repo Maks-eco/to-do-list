@@ -2,7 +2,7 @@ import AddButton from "entities/AddToListButton";
 import Popup from "entities/PopupAddMenu";
 import { useState } from "react";
 
-function ShowPopup(props: { updateList: () => void }) {
+function ShowPopup() {
   const [visibEl, setVisibEl] = useState(false);
 
   function togglePopup() {
@@ -12,7 +12,7 @@ function ShowPopup(props: { updateList: () => void }) {
   return (
     <>
       <AddButton onPress={togglePopup} />
-      {visibEl && <Popup onPress={togglePopup} updateList={props.updateList} />}
+      {visibEl && <Popup onClose={togglePopup} />}
     </>
   );
 }
