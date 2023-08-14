@@ -3,25 +3,14 @@ $main-color-inactive: #ccc;
 $orange-backgr: linear-gradient(
   90deg,
   $main-orange 0%,
-  $main-orange 51%,
+  $main-orange 50%,
   rgba(246, 153, 27, 1) 100%
 );
 $primary-color: #444;
-/*  */
-// * {
-//   @font-face {
-//     font-family: "HandWritten";
-//     src: url("app/fonts/marutya.ttf"); /* url("./slimamif.ttf"); */
-//   }
-
-//   @font-face {
-//     font-family: "ClassicFont";
-//     src: url("app/fonts/Raleway-Regular.ttf"); /* url("./slimamif.ttf"); */
-//   }
-// }
 
 @mixin button-description {
   height: 40px;
+  // width: 46px;
   padding: 7px 10px 7px 10px;
   border-radius: 5px;
   border: 1px solid;
@@ -45,11 +34,15 @@ $primary-color: #444;
     top: -12px;
     padding-left: 10px;
     font-size: 22px;
+    opacity: 0;
   }
 
   &:hover {
+    // width: fit-content;
     .descr {
       display: inline;
+      opacity: 1;
+      transition: opacity 0.5s;
     }
   }
 }

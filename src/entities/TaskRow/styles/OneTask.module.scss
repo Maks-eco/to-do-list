@@ -2,10 +2,11 @@
 //   display: block;
 //   padding: 5px 0 11px 0;
 // }
+$dot-speed: 0.2s;
 
 /* The container */
 .container {
-  display: inline;
+  display: inline-block;
   // display: block;
   // display: flex;
   position: relative;
@@ -42,7 +43,7 @@
     transparent 0 9px,
     $main-color-inactive 9px 12px
   );
-  border: 1px solid $main-color-inactive;
+  outline: 1px solid $main-color-inactive;
   color: $main-color-inactive;
 }
 
@@ -72,6 +73,7 @@
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
   background-color: #fff;
+  transition: background-color $dot-speed;
   // border-color: $main-color-inactive;
 }
 
@@ -84,6 +86,7 @@
 .container:hover input:checked ~ .checkmark {
   background-color: #ffffff00;
   border-color: $main-color-inactive;
+  transition: border-color $dot-speed;
 }
 
 /* Style the checkmark/indicator */
