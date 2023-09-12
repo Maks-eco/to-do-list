@@ -1,0 +1,97 @@
+// .svg_bcgr {
+//   height: 200px;
+//   width: 200px;
+//   -webkit-mask: url("./gallery/card9.svg") no-repeat 100% 100%;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   color: aquamarine;
+//   mask: url("./gallery/card9.svg") no-repeat 100% 100%;
+//   -webkit-mask-size: cover;
+//   mask-size: cover;
+//   background-color: $main-orange;
+// }
+
+// img {
+//   height: 100px;
+//   width: 100px;
+// }
+
+.svg_import {
+  //   path {
+  height: 300px;
+  width: 300px;
+  // style: "fill:#f00";
+  //   color: aqua;
+  //   }
+  &_inac {
+    path {
+      fill: /* $orange-backgr */ #aaa;
+      transition: fill 0.2s ease;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+  }
+  //   path {
+
+  //   }
+}
+
+// path {
+//   //   width: 400px;
+//   //   height: 400px;
+//   fill: /* $orange-backgr */ $main-orange;
+//   opacity: 1;
+//   transition: fill 0.2s ease;
+//   transition: opacity 0.8s ease;
+// }
+
+// path:hover {
+//   fill: rgba(0, 255, 21, 0.425);
+// }
+
+.anistep {
+  path {
+    width: 300px;
+    height: 300px;
+    fill: #aaa;
+    animation: color-me-in 5s infinite; /* other keywords like "infinite alternate" can be useful here */
+  }
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes color-me-in {
+  0% {
+    fill: #ccc;
+    opacity: 0;
+    // transform: translateX(-30px);
+    margin-left: 0px;
+  }
+
+  25% {
+    // fill: #ccc;
+    fill: $main-orange;
+    // transform: translateX(0);
+    margin-left: 30px;
+  }
+  35% {
+    opacity: 1;
+    fill: $main-orange;
+  }
+  65% {
+    fill: $main-orange;
+    opacity: 1;
+  }
+  75% {
+    fill: #ccc;
+
+    // transform: translateX(0);
+    margin-left: 30px;
+  }
+  100% {
+    opacity: 0;
+
+    // transform: translateX(30px);
+    margin-left: 60px;
+  }
+}
