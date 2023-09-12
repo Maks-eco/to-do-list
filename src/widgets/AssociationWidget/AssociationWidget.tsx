@@ -4,7 +4,7 @@ import { Images } from "./gallery";
 
 function AssociationWidget() {
   const myRef = useRef(null);
-  const [imgNumb, setImgNumb] = useState(0);
+  const [imgNumb, setImgNumb] = useState(3);
 
   useEffect(() => {
     const timer = setInterval(() => {
