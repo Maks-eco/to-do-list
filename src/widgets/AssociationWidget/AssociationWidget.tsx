@@ -8,7 +8,7 @@ function AssociationWidget() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setImgNumb(imgNumb < 8 ? imgNumb + 1 : 0);
+      setImgNumb(imgNumb > 0 ? imgNumb - 1 : Images.length - 1);
     }, 5000);
     // console.log(myRef.current.className);
     return () => {
@@ -20,6 +20,7 @@ function AssociationWidget() {
 
   return (
     <>
+      {imgNumb}
       <div
         ref={myRef}
         className={classes}
