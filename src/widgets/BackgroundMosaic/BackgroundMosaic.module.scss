@@ -11,18 +11,33 @@
   width: 50%;
   // width: calc(50vw - ((100vw - 100%) / 2));
   height: 33vh;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  transition: 1s all ease;
+}
+
+.sub-item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-// @error 'c
 
-.temporary-hidden {
-  path {
-    opacity: 0;
-    transition: 1s all ease;
-  }
+// @error 'c
+.color-marker {
+  // background-color: aqua;
+  // path {
+  opacity: 0;
+  transition: 1s all ease;
+  // }
 }
+
+// .temporary-hidden {
+//   path {
+//     opacity: 0;
+//     transition: 1s all ease;
+//   }
+// }
 
 .anistep {
   path {
@@ -32,7 +47,7 @@
     /*  fill: #ccc; */
     /* fill: #454453; */
     /*  fill: #d0cee1; */
-    fill: #bdb9df;
+    fill: #bdb9df9a;
     transition: 1s all ease;
   }
   width: 80%;

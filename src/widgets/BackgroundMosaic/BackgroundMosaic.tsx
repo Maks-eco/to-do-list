@@ -61,7 +61,7 @@ function BackgroundMosaic() {
         return { id: it.id, index: it.index, state };
       });
       setImgQueue(bufQueueIter);
-      console.log(queue);
+      // console.log(queue);
       // console.log(some);
       setImgNumb(some);
     }, 2000);
@@ -73,14 +73,20 @@ function BackgroundMosaic() {
 
   const listItems = items.map((item) => (
     <div
-      className={`${cls.item} ${item.state ? cls["temporary-hidden"] : ""}`}
+      className={`${cls.item}  ${item.state ? cls["color-marker"] : ""}`}
       key={item.id}
     >
-      {/* {item} */}
       <div
-        className={cls.anistep}
-        dangerouslySetInnerHTML={{ __html: Images[item.index].toString() }}
-      ></div>
+        className={`${cls["sub-item"]}  ${
+          item.state ? cls["temporary-hidden"] : ""
+        }`}
+      >
+        {/* {item} */}
+        <div
+          className={cls.anistep}
+          dangerouslySetInnerHTML={{ __html: Images[item.index].toString() }}
+        ></div>
+      </div>
     </div>
   ));
 
