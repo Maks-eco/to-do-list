@@ -33,7 +33,15 @@ $dot-speed: 0.2s;
 // }
 
 .container-active {
-  background: $orange-backgr;
+  // background: $orange-backgr;
+  background: linear-gradient(
+    90deg,
+    #f47521ee 0%,
+    #f47521ee 50%,
+    #f6991bee 100%
+  );
+  /* opacity: .8; */
+  backdrop-filter: blur(2px);
 }
 
 .container-inactive {
@@ -45,6 +53,7 @@ $dot-speed: 0.2s;
   );
   outline: 1px solid $main-color-inactive;
   color: $main-color-inactive;
+  backdrop-filter: blur(2px);
 }
 
 /* Hide the browser's default checkbox */

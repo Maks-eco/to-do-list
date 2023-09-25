@@ -5,11 +5,13 @@ import BackgroundMosaic from "widgets/BackgroundMosaic";
 
 const MainPage = () => {
   return (
-    <div className={cls.container}>
-      <TaskWidget />
-      {/* <AssociationWidget /> */}
+    <>
+      <div className={cls.container}>
+        <TaskWidget />
+        {/* <AssociationWidget /> */}
+      </div>
       <BackgroundMosaic />
-    </div>
+    </>
   );
 };
 

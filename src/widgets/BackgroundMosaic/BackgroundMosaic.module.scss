@@ -1,5 +1,40 @@
 .container {
   position: fixed;
+  width: 100vw;
   top: 0;
   z-index: -999;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item {
+  // background-color: #eee;
+  width: 50%;
+  // width: calc(50vw - ((100vw - 100%) / 2));
+  height: 33vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// @error 'c
+
+.temporary-hidden {
+  path {
+    opacity: 0;
+    transition: 1s all ease;
+  }
+}
+
+.anistep {
+  path {
+    /*  width: 300px;
+    height: 300px; */
+    // height: 100%;
+    /*  fill: #ccc; */
+    /* fill: #454453; */
+    /*  fill: #d0cee1; */
+    fill: #bdb9df;
+    transition: 1s all ease;
+  }
+  width: 80%;
+  height: 80%;
 }

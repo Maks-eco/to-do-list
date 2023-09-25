@@ -1,6 +1,6 @@
 import cls from "./AssociationWidget.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { Images } from "./gallery";
+import { Images } from "shared/gallery";
 
 function AssociationWidget() {
   const myRef = useRef(null);
