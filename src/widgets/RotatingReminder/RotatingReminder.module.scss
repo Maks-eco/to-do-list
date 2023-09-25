@@ -1,58 +1,63 @@
 .container {
   position: fixed;
-  width: 30vw;
-  height: 30vh;
+  width: 300px;
+  height: 300px;
   right: 0;
   bottom: 0;
   z-index: -999;
   display: flex;
   flex-wrap: wrap;
-  background-color: aqua;
 }
 .item {
-  // background-color: #eee;
-  width: 50%;
-  // width: calc(50vw - ((100vw - 100%) / 2));
-  height: 33vh;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  transition: 1s all ease;
-}
-
-.sub-item {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-// @error 'c
-.color-marker {
-  // background-color: aqua;
-  // path {
-  opacity: 0;
   transition: 1s all ease;
-  // }
 }
-
-// .temporary-hidden {
-//   path {
-//     opacity: 0;
-//     transition: 1s all ease;
-//   }
-// }
 
 .anistep {
   path {
-    /*  width: 300px;
-    height: 300px; */
-    // height: 100%;
-    /*  fill: #ccc; */
-    /* fill: #454453; */
-    /*  fill: #d0cee1; */
-    fill: #bdb9df9a;
-    transition: 1s all ease;
+    width: 300px;
+    height: 300px;
+    fill: #aaa;
+    animation: color-me-in 4s infinite;
+    transform-origin: bottom right;
   }
-  width: 80%;
-  height: 80%;
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes color-me-in {
+  0% {
+    fill: #ccc;
+    opacity: 0;
+    transform: rotate(-30deg);
+    margin-left: 0px;
+  }
+
+  25% {
+    // fill: $main-orange;
+    transform: rotate(0);
+    margin-left: 30px;
+  }
+  35% {
+    opacity: 1;
+    // fill: $main-orange;
+  }
+  65% {
+    // fill: $main-orange;
+    opacity: 1;
+  }
+  75% {
+    // fill: #ccc;
+
+    transform: rotate(0);
+    margin-left: 30px;
+  }
+  100% {
+    opacity: 0;
+
+    transform: rotate(30deg);
+    margin-left: 60px;
+  }
 }
