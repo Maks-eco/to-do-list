@@ -8,14 +8,14 @@ function getWindowSize() {
 
 function WindowSize() {
   const [windowSize, setWindowSize] = useState(getWindowSize());
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
-      // dispatch({ type: "WINDOW_RESIZE", payload: "windresize" });
+      dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize().innerWidth });
     }
+    dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize().innerWidth });
 
     window.addEventListener("resize", handleWindowResize);
 
@@ -26,8 +26,8 @@ function WindowSize() {
 
   return (
     <>
-      <h2>Width: {windowSize.innerWidth}</h2>
-      <h2>Height: {windowSize.innerHeight}</h2>
+      {/* <h2>Width: {windowSize.innerWidth}</h2>
+      <h2>Height: {windowSize.innerHeight}</h2> */}
     </>
   );
 }

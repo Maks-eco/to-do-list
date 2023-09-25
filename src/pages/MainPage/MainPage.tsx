@@ -2,6 +2,7 @@ import TaskWidget from "widgets/TaskWidget";
 import AssociationWidget from "widgets/AssociationWidget";
 import cls from "./MainPage.module.scss";
 import BackgroundMosaic from "widgets/BackgroundMosaic";
+import RotatingReminder from "widgets/RotatingReminder";
 
 const MainPage = () => {
   return (
@@ -11,6 +12,7 @@ const MainPage = () => {
         {/* <AssociationWidget /> */}
       </div>
       <BackgroundMosaic />
+      <RotatingReminder />
     </>
   );
 };

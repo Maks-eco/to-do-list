@@ -2,9 +2,12 @@ import { ListStorage } from "shared/store";
 import { Task } from "app/interfaces/Task";
 import { Images } from "shared/gallery";
 
+import { TaskList } from "app/interfaces/StoreTest";
+
 import cls from "./RotatingReminder.module.scss";
 
 import { useState, useEffect, memo } from "react";
+import { useSelector } from "react-redux";
 
 interface ImgInfo {
   id: number;
@@ -60,6 +63,9 @@ function RotatingReminder() {
     };
   });
 
+  const windowWidth = useSelector((state: TaskList) => state.windowWidth);
+  // console.log(windowWidth);
+
   const listItems = items.map((item) => (
     <div
       className={`${cls.item}  ${item.state ? cls["color-marker"] : ""}`}
@@ -71,6 +77,7 @@ function RotatingReminder() {
         }`}
       >
         {/* {item} */}
+        {/* {windowWidth} */}
         <div
           className={cls.anistep}
           dangerouslySetInnerHTML={{ __html: Images[item.index].toString() }}
@@ -79,7 +86,9 @@ function RotatingReminder() {
     </div>
   ));
 
-  return <div className={cls.container}>{listItems}</div>;
+  return windowWidth > 600 ? (
+    <div className={cls.container}>{listItems}</div>
+  ) : null;
 }
 
 export default RotatingReminder;
