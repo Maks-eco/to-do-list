@@ -7,6 +7,7 @@ import { Task } from "./interfaces/Task";
 import { Provider } from "react-redux";
 
 import { ListStorage } from "shared/store";
+import WindowSize from "features/WindowSize";
 
 class ListStorageToggle extends ListStorage<Task> {
   toggleTask(id: string) {
@@ -67,12 +68,15 @@ const store = configureStore({
   reducer,
 });
 
-const App = () => (
-  <Provider store={store}>
-    <div className={cls.app}>
-      <MainPage />
-    </div>
-  </Provider>
-);
+function App() {
+  return (
+    <Provider store={store}>
+      <WindowSize />
+      <div className={cls.app}>
+        <MainPage />
+      </div>
+    </Provider>
+  );
+}
 
 export default App;
