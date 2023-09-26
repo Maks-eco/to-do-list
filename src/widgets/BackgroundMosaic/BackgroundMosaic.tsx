@@ -17,7 +17,10 @@ interface ImgInfo {
 const storage = new ListStorage<Task>();
 
 function BackgroundMosaic() {
-  const windowWidth = useSelector((state: TaskList) => state.windowWidth);
+  const windowHeight = useSelector(
+    (state: TaskList) => state.window.innerHeight
+  );
+  const windowWidth = useSelector((state: TaskList) => state.window.innerWidth);
 
   const allImages: ImgInfo[] = Images.map((img, index) => {
     return { id: index, index, state: true };
@@ -70,7 +73,7 @@ function BackgroundMosaic() {
     </div>
   ));
 
-  return windowWidth <= 600 ? (
+  return windowHeight / windowWidth >= 3 / 2 ? (
     <div className={cls.container}>{listItems}</div>
   ) : null;
 }

@@ -46,9 +46,12 @@ function RotatingReminder() {
     };
   });
 
-  const windowWidth = useSelector((state: TaskList) => state.windowWidth);
+  const windowHeight = useSelector(
+    (state: TaskList) => state.window.innerHeight
+  );
+  const windowWidth = useSelector((state: TaskList) => state.window.innerWidth);
 
-  return windowWidth > 600 ? (
+  return windowHeight / windowWidth < 3 / 2 ? (
     <div ref={contnr} className={cls.container}>
       <div
         className={cls.anistep}

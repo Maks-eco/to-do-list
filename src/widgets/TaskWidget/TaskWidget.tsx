@@ -7,6 +7,7 @@ import classes from "./TaskWidget.module.scss";
 
 import { useSelector } from "react-redux";
 import { TaskList } from "app/interfaces/StoreTest";
+// import {card} from 'shared/gallery/card6.svg'
 
 const storage = new ListStorage<Task>();
 
@@ -27,6 +28,12 @@ function TaskWidget() {
         ))}
       </div>
       <RemoveButton />
+      {/* <img
+        src="https://raw.githubusercontent.com/Maks-eco/to-do-list/9dbc6da036660a2fc1cbbb975e49401a88d7e033/src/shared/gallery/card7.svg"
+        alt="A Rectangle Image with SVG"
+        height="450px"
+        width="450px"
+      /> */}
     </>
   );
 }

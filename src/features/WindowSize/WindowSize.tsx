@@ -13,9 +13,9 @@ function WindowSize() {
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
-      dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize().innerWidth });
+      dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize() });
     }
-    dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize().innerWidth });
+    dispatch({ type: "WINDOW_RESIZE", payload: getWindowSize() });
 
     window.addEventListener("resize", handleWindowResize);
 

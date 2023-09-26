@@ -34,17 +34,18 @@ interface ActionType {
 }
 const defaultState: TaskList = {
   list: storage.getList(),
-  windowWidth: 0,
+  window: {
+    innerWidth: 0,
+    innerHeight: 0,
+  },
 };
 
 const reducer = (state = defaultState, action: ActionType) => {
   switch (action.type) {
     case "WINDOW_RESIZE": {
-      // storage.addToList(action.payload);
       return {
         ...state,
-        windowWidth: action.payload,
-        // state.windowWidth: action.payload,
+        window: action.payload,
       };
     }
     case "ADD_TASK": {
