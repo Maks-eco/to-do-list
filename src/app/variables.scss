@@ -39,10 +39,12 @@ $primary-color: #444;
 
   &:hover {
     // width: fit-content;
-    .descr {
-      display: inline;
-      opacity: 1;
-      transition: opacity 0.5s;
+    @media (min-aspect-ratio: 1/1) {
+      .descr {
+        display: inline;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
     }
   }
 }
