@@ -10,7 +10,7 @@ const RemoveButton = () => {
 
   return (
     <button className={cls["button-dec"]} onClick={clearDoneTasks}>
-      <span className={cls.sign}>-</span>
+      <span className={cls.sign}>–</span>
       <span className={cls.descr}>очистить выполненное</span>
     </button>
   );

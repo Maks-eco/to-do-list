@@ -7,8 +7,9 @@
       "*": ["./src/*"]
     },
     "noImplicitAny": true,
-    "module": "es6",
+    //"module": "es6",
     "target": "es5",
+    "module": "esnext",
     "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
