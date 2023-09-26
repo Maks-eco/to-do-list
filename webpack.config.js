@@ -6,6 +6,7 @@ const { InjectManifest } = require("workbox-webpack-plugin");
 // const WebpackPwaManifest = require("webpack-pwa-manifest");
 // const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const styleBuilds = (...topLoader) => {
   const obj = [
@@ -137,4 +138,9 @@ module.exports = {
       swDest: "sw.js",
     }), */
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+  devtool: process.env.NODE_ENV === "development" ? "" : "nosources-source-map",
 };
