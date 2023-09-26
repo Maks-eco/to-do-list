@@ -6,7 +6,7 @@ import { TaskList } from "app/interfaces/StoreTest";
 
 import cls from "./RotatingReminder.module.scss";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { useSelector } from "react-redux";
 
 interface ImgInfo {
@@ -22,6 +22,8 @@ function RotatingReminder() {
     return { id: index, index, state: true };
   });
 
+  const contnr = useRef(null);
+
   const [currentItem, setCurrentNumb] = useState<ImgInfo>(allImages[0]);
 
   let bufQueueIter: ImgInfo[] = [];
@@ -33,6 +35,10 @@ function RotatingReminder() {
           ? allImages[0]
           : allImages[currentItem.index + 1]
       );
+      if (contnr.current) contnr.current.className = cls.nonShow;
+      setTimeout(() => {
+        if (contnr.current) contnr.current.className = cls.container;
+      }, 50);
     }, 4000);
 
     return () => {
@@ -43,7 +49,7 @@ function RotatingReminder() {
   const windowWidth = useSelector((state: TaskList) => state.windowWidth);
 
   return windowWidth > 600 ? (
-    <div className={cls.container}>
+    <div ref={contnr} className={cls.container}>
       <div
         className={cls.anistep}
         dangerouslySetInnerHTML={{

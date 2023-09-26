@@ -7,6 +7,16 @@
   z-index: -999;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  path {
+    fill: #aaa;
+  }
+  animation: color-me-in 4s infinite;
+  transform-origin: 600px 600px;
+}
+.nonShow {
+  display: none;
 }
 .item {
   display: flex;
@@ -16,13 +26,11 @@
 }
 
 .anistep {
-  path {
-    width: 300px;
-    height: 300px;
-    fill: #aaa;
-    animation: color-me-in 4s infinite;
-    transform-origin: bottom right;
-  }
+  // path {
+  //   fill: #aaa;
+  //   animation: color-me-in 4s infinite;
+  //   transform-origin: 600px 600px;
+  // }
   width: 300px;
   height: 300px;
 }
